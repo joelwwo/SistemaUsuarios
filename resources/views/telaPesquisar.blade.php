@@ -41,10 +41,11 @@
                             <br>
                         <strong>Valor total em compras R$ </strong> @php
                             setlocale(LC_MONETARY, 'en_US');
-                        
                             money_format('%i', $valor);
                             echo money_format('%i', $valor);
                         @endphp
+                        <br><strong>Pontos: {{$pontos}}</strong>
+
                     </p>
                     
                     

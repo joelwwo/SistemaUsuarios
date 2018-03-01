@@ -174,9 +174,10 @@ class ClientesController extends Controller
             $nome=$cliente[0]->nome;
             $valor1=compras::where('id_cliente',$idCliente)->sum('valor');
             $valor=(double) $valor1;
+            $pontos=$valor*2;
             //return $valor;
         }
    
-        return view('telaPesquisar', compact('valor','nome'));
+        return view('telaPesquisar', compact('valor','nome','pontos'));
     }
 }
