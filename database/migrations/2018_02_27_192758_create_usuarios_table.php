@@ -21,6 +21,24 @@ class CreateUsuariosTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('clientes', function (Blueprint $table) {
+            $table->increments('id_cliente');
+            $table->string('nome');
+            $table->string('cpf')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('compras', function (Blueprint $table) {
+            $table->increments('id_compra');
+            $table->unsignedInteger('id_cliente');
+            $table->double('valor');
+
+            $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete('cascade');
+
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -30,6 +48,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('usuarios','clientes','compras');
     }
 }

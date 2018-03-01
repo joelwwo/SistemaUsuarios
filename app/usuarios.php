@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class usuarios extends Model
 {
-    $primaryKey='id_usuario';
+    protected $primaryKey='id_usuario';
 }

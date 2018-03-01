@@ -4,35 +4,43 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
-    <title>Sistema de Usuário</title>
+    <title>Clientes</title>
 
     <!-- Bootstrap -->
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('css/bootstrap.main.css')}}" rel="stylesheet">
+    <link href={{asset("css/bootstrap.min.css")}} rel="stylesheet">
+    <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/main.css')}}" rel="stylesheet">
 
-    <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
-    <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+    <body>
+        <div class="container">
+            <!--  Cabeçalho e navegação  -->
+            @include('layouts.nav')
 
-      <div class="container">
-
-            @include('inc.header')
-
+            <!--  Conteúdo  -->
             @yield('conteudo')
+            <!--  Rodapé  -->
+            @include('layouts.rodape')
+        </div>
 
-      </div>
-    
 
+      
 
     <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário -->
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+      <script src={{asset("js/bootstrap.min.js")}}></script>
+      <script src={{asset("js/jquery.mask.min.js")}}></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+  $('#cpf').mask('000.000.000-00', {reverse: true});
+  $('#valor').mask("#.##0.00", {reverse: true});
+});
+      </script>
   </body>
 </html>

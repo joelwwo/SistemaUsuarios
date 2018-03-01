@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-    <img src="{{asset('imagens/64.png')}}" class="img-responsive">
+<div class="row text-center">
+    <div >
+    <img src="{{asset('imagens/128.png')}}" >
     </div>
 </div>
