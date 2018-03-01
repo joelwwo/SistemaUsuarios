@@ -156,7 +156,7 @@ class ClientesController extends Controller
         return redirect('home');
     }
 
-    //Pesquisar po cliente
+    //Pesquisar po cliente nnnjjj
 
     public function pesquisar(Request $request){
         $cpf=$request->cpf;
