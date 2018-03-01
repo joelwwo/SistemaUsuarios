@@ -172,7 +172,9 @@ class ClientesController extends Controller
         {
             $idCliente=$cliente[0]->id_cliente;
             $nome=$cliente[0]->nome;
-            $valor=compras::where('id_cliente',$idCliente)->sum('valor');
+            $valor1=compras::where('id_cliente',$idCliente)->sum('valor');
+            $valor=(double) $valor1;
+            //return $valor;
         }
    
         return view('telaPesquisar', compact('valor','nome'));

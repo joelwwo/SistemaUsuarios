@@ -14,7 +14,7 @@
         <div class="col-md-12" style="padding: 5px 0px ">
             {{--  Início  --}}
             <a href="/home" class="btn btn-primary" role="button">
-                <span class="glyphicon glyphicon-home"></span> início
+                <span class="glyphicon glyphicon-user"></span> Gerenciar clientes
             </a>
             {{--  Novo cliente  --}}
             <a href="/create" class="btn btn-primary" role="button">
