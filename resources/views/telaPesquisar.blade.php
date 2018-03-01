@@ -39,7 +39,7 @@
                         
                         <strong>Nome:</strong> {{$nome}}
                             <br>
-                        <strong>Valor total em compras:</strong> @php
+                        <strong>Valor total em compras R$ </strong> @php
                             setlocale(LC_MONETARY, 'en_US');
                         
                             money_format('%i', $valor);
