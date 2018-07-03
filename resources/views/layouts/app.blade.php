@@ -8,8 +8,10 @@
     <title>Sistema de Usuário</title>
 
     <!-- Bootstrap -->
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('css/bootstrap4.min.css')}}" rel="stylesheet">
   <link href="{{asset('css/main.css')}}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
 
     <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
     <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->

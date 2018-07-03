@@ -2,8 +2,7 @@
 
 @section('conteudo')
 
-<div class="row">
-    <div class="col-md-4 col-md-offset-4    col-sm-8 col-sm-offset-2 col-xs-12">
+
 
         <h1 class="text-center">Clientes cadastrados</h1>
 
@@ -28,12 +27,26 @@
             
         @endif
 
-            
+<table class="table table-striped" id="tabela">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">CPF</th>
+            <th class="text-center">Pontos</th>
+            <th style="padding: 11px 55px ">Inserir compra</th>
+            <th class="text-center"><i class="fas fa-user-edit"></th>
+            <th class="text-center"><i class="fas fa-trash-alt"></th>
+        </tr>
+    </thead>
+    <tbody>     
                 @foreach ($clientes as $cliente)
                     @include('inc.linha_cliente')
                 @endforeach
 
-    </div>
+    </tbody>
+</table>
+<script>
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+</script>
 
-</div>
 @endsection
