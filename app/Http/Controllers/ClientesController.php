@@ -41,37 +41,27 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         $cliente=clientes::where('cpf',$request->cpf)->get();
-       
+        $clientes=clientes::get();
+     
         if(count($cliente)==1)
         {   
             $situacao="CPF já cadastrado!";
-            return view('/criar_cliente', compact('situacao'));
+            /* return view('home', compact('situacao', 'clientes')); */
+            return redirect('home')->with('erro','CPF já cadastrado!');
         }
         
         else
         {
-            if(count($cliente)==0)
-            {
-                $cliente1=new clientes;
-                $cliente1->nome=$request->nome;
-                $cliente1->cpf=$request->cpf;
-                $cliente1->save();
-                $situacao="Cliente cadastrado com sucesso!";
-                //return redirect('/criar_cliente',compact('situacao'));
-
-            }
-            else
-            {
-
                 $cliente1=new clientes;
                 $cliente1->nome=$request->nome;
                 $cliente1->cpf=$request->cpf;
                 $cliente1->save();
 
                 $situacao="Cliente cadastrado com sucesso!";
-                //return redirect('/criar_cliente',compact('situacao'));
-            }
-            return view('/criar_cliente',compact('situacao'));
+                
+            /* return view('home',compact('situacao', 'clientes')); */
+            /* return redirect('home',compact('situacao')); */
+            return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
         }
         
         

@@ -6,27 +6,16 @@
 
         <h1 class="text-center">Clientes cadastrados</h1>
 
-
-        @if (isset($situacao))
-            @if ($situacao=="CPF já cadastrado!")
-            <p class="alert alert-danger text-center">{{$situacao}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                &times;
-                            </span>
-                        </button>
-            </p>
-            @else
-                <p class="alert alert-success text-center">{{$situacao}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">
-                            &times;
-                        </span>
-                    </button>
-                </p>
-            @endif
-            
-        @endif
+    @if (session('sucesso'))
+        <div class="alert alert-success">
+            {{ session('sucesso') }}
+        </div>
+    @endif
+    @if (session('erro'))
+        <div class="alert alert-danger">
+            {{ session('erro') }}
+        </div>
+    @endif
 
 <table class="table table-striped" id="tabela">
     <thead class="thead-dark">

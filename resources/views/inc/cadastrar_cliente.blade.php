@@ -25,15 +25,15 @@
                     @csrf
                         <div class="form-group col-md-12">
                             <label for="recipient-name" class="col-form-label">Nome:</label>
-                            <input name="nome" type="text" class="form-control" id="name" onkeyup="maiuscula(this)" required >
+                            <input autocomplete="off" name="nome" type="text" class="form-control" id="name" onkeyup="maiuscula(this)" required >
                         </div>
                         <div class="form-group col-md-12">
                             <label for="recipient-name" class="col-form-label">CPF:</label>
-                            <input type="text" class="form-control" name="cpf" id="cpf" required >
+                            <input autocomplete="off" type="text" class="form-control" name="cpf" id="cpf" required >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" role="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="submit" role="submit" class="btn btn-primary">Cadastrar</button>
                         </div>
                     </form>
                 </div>
