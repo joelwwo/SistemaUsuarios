@@ -22,7 +22,8 @@
             </form>
         </th>     
     <th>
-        <a href="#" class="btn btn-outline-primary">Editar cliente</a>
+        <!-- <a href="#" class="btn btn-outline-primary">Editar cliente</a> -->
+        @include('inc.editar_cliente')
     </th>
     <th>
         <a href="eliminarCliente/{{ $cliente->id_cliente }}" class="btn btn-outline-danger">Excluir cliente</a>

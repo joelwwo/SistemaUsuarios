@@ -17,6 +17,30 @@
         </div>
     @endif
 
+    @if (session('compra'))
+        <div class="alert alert-success">
+            {{ session('compra') }}
+        </div>
+    @endif
+
+    @if (session('excluir'))
+        <div class="alert alert-success">
+            {{ session('excluir') }}
+        </div>
+    @endif
+
+    @if (session('cpf'))
+        <div class="alert alert-danger">
+            {{ session('cpf') }}
+        </div>
+    @endif
+
+    @if (session('editar'))
+        <div class="alert alert-success">
+            {{ session('editar') }}
+        </div>
+    @endif
+
 <table class="table table-striped" id="tabela">
     <thead class="thead-dark">
         <tr>

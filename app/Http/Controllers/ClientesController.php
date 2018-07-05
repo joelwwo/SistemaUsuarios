@@ -24,13 +24,6 @@ class ClientesController extends Controller
         return view('home',compact('clientes','compras'));
     }
 
-    //Exibir tela de cadastro de cliente --OK
-    public function create()
-    {
-        return view('criar_cliente');
-    }
-
-   
     //Exibi tela de inserir compra --OK
     public function telaInserirCompra()
     {   
@@ -40,27 +33,19 @@ class ClientesController extends Controller
     //Cadastra cliente --OK
     public function store(Request $request)
     {
-        $cliente=clientes::where('cpf',$request->cpf)->get();
-        $clientes=clientes::get();
-     
+        $cliente=clientes::where('cpf',$request->cpf)->get();     
         if(count($cliente)==1)
         {   
-            $situacao="CPF já cadastrado!";
-            /* return view('home', compact('situacao', 'clientes')); */
             return redirect('home')->with('erro','CPF já cadastrado!');
         }
         
         else
         {
-                $cliente1=new clientes;
-                $cliente1->nome=$request->nome;
-                $cliente1->cpf=$request->cpf;
-                $cliente1->save();
+            $cliente1=new clientes;
+            $cliente1->nome=$request->nome;
+            $cliente1->cpf=$request->cpf;
+            $cliente1->save();
 
-                $situacao="Cliente cadastrado com sucesso!";
-                
-            /* return view('home',compact('situacao', 'clientes')); */
-            /* return redirect('home',compact('situacao')); */
             return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
         }
         
@@ -70,58 +55,39 @@ class ClientesController extends Controller
     public function InserirCompra(Request $request, $id)
     {
         
-        $clientes=clientes::get();
         $compra=new compras;
         $compra->valor=$request->valor;
         $compra->id_cliente=$id;
         $compra->save();
-        $situacao="Compra inserida com sucesso!";
-
-        return view('home', compact('situacao', 'clientes'));   
+        
+        return redirect('home')->with('compra','Compra inserida com sucesso!');  
         
     }
 
-
-    public function show(clientes $clientes)
-    {
-        //
-    }
-
-    //Editar no formulário cliente
-    public function edit($id)
-    {   
-        $cliente=clientes::find($id);
-        return view('alterarCliente',compact('cliente'));
-    }
-
-    //Atualizar cliente no banco de dados
+    //Editar cliente no banco de dados
     public function update(Request $request, $id)
     {
-        $cliente1=clientes::where('cpf',$request->cpf)->get();
-        $idCliente1=$cliente1[0]->id_cliente;
+        $existe=clientes::where('cpf',$request->cpf)->count();
         $cliente=clientes::find($id);
         $idCliente=$cliente->id_cliente;
 
-
+        /* print($request->cpf);
+        exit(); */
        
-        if($idCliente!=$idCliente1)
+        if($existe==1)
         {   
-            $situacao="CPF já cadastrado!";
-            $clientes=clientes::get();
-            
-
-            return view('/home', compact('situacao','clientes'));
+            return redirect('home')->with('cpf','CPF já cadastrado!');
         }
         else
         {   
-            $situacao="Usuário alterado com sucesso!";
             $client=clientes::find($id);
             $client->nome=$request->nome;
             $client->cpf=$request->cpf;
+           
             $client->save();
             $clientes=clientes::get();
         
-            return view('/home', compact('situacao','clientes'));
+            return redirect('home')->with('editar','Usuário(a) editado(a) com sucesso!');
         }
 
     }
@@ -131,10 +97,10 @@ class ClientesController extends Controller
     {
         clientes::destroy($id);
 
-        return redirect('home');
+        return redirect('home')->with('excluir','Usuário(a) excluído(a) com sucesso!');
     }
 
-    //Pesquisar po cliente nnnjjj
+    //Pesquisar po cliente
 
     public function pesquisar(Request $request){
         $cpf=$request->cpf;

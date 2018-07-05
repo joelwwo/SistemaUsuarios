@@ -1,6 +1,13 @@
 {{--  CABEÇALHO E NAVEGAÇÃO  --}}
 
 {{--  CABEÇALHO  --}}
+<!-- FUNÇÃO DE MASCARA MAIUSCULA -->
+<script type="text/javascript">
+        function maiuscula(z){
+            v = z.value.toUpperCase();
+            z.value = v;
+        }
+</script>
 
 <div class="row">
         <div class="col-md-12 bg-primary">
@@ -25,7 +32,7 @@
               <form name="pesquisa">
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" id="txt_consulta" placeholder="Filtrar por nome ou CPF..." name="texto" >
+                        <input type="text" class="form-control" id="txt_consulta" placeholder="Filtrar por nome ou CPF..." name="texto" onkeyup="maiuscula(this)" >
                     </div>
                 </div>
               </form>

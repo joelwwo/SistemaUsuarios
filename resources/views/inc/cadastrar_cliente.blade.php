@@ -1,14 +1,3 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
 <!-- FUNÇÃO DE MASCARA MAIUSCULA -->
     <script type="text/javascript">
         function maiuscula(z){
@@ -21,7 +10,7 @@
         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                    <form method="POST" action="/" name="cadastro" style="background-color:#BFEFFF">
+                    <form method="POST" action="/" name="cadastro">
                     @csrf
                         <div class="form-group col-md-12">
                             <label for="recipient-name" class="col-form-label">Nome:</label>
@@ -39,5 +28,4 @@
                 </div>
             </div>
         </div>
-</body>
-</html>
+
