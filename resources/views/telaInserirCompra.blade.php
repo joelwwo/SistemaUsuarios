@@ -42,7 +42,7 @@
 
             {{--  Salvar  --}}
             <div class="text-center">
-                <button class="btn btn-primary" role="submit" >Salvar</button>
+                <button class="btn btn-primary" role="input" >Salvar</button>
             </div>
             
         </form>

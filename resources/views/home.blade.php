@@ -6,6 +6,7 @@
 
         <h1 class="text-center">Clientes cadastrados</h1>
 
+
         @if (isset($situacao))
             @if ($situacao=="CPF já cadastrado!")
             <p class="alert alert-danger text-center">{{$situacao}}
@@ -33,7 +34,7 @@
             <th class="text-center">Nome</th>
             <th class="text-center">CPF</th>
             <th class="text-center">Pontos</th>
-            <th style="padding: 11px 55px ">Inserir compra</th>
+            <th class="text-center">Inserir compra</th>
             <th class="text-center"><i class="fas fa-user-edit"></th>
             <th class="text-center"><i class="fas fa-trash-alt"></th>
         </tr>

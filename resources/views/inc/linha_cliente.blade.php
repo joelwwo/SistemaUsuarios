@@ -18,7 +18,7 @@
             <span title="Editar usuário" class="glyphicon glyphicon-pencil" style="margin-left: 10px"></span>
         </a>
         {{--  Eliminar  --}}
-        <a href="eliminarCliente/{{ $cliente->id_cliente }}">
+        <a href=<a href="eliminarCliente/{{ $cliente->id_cliente }}">>
             <span title="Excluir usuário" class="glyphicon glyphicon-trash" style="margin-left: 10px"></span>
         </a>
     </div>
@@ -28,12 +28,13 @@
     <td>{{$cliente->cpf}}</td>
     <td>?</td>
         <th>
-            <form class="form-inline pi-draggable">
-                <div class="form-group col-md-8">
+            <form class="form-inline pi-draggable" method="POST" action="/inserirCompra/{{ $cliente->id_cliente }}">
+            @csrf
+                <div class="form-group col-md-8 offset-md-2">
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="R$">
+                        <input type="text" name="valor" id="valor" class="form-control" placeholder="R$">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Salvar</button>
+                            <button class="btn btn-primary" role="submit" type="button">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -48,6 +49,6 @@
         <a href="#" class="btn btn-outline-primary">Editar cliente</a>
     </th>
     <th>
-        <a href="#" class="btn btn-outline-danger">Excluir cliente</a>
+        <a href="eliminarCliente/{{ $cliente->id_cliente }}" class="btn btn-outline-danger">Excluir cliente</a>
     </th>
 </tr>

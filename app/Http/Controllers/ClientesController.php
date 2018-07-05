@@ -77,29 +77,17 @@ class ClientesController extends Controller
         
     }
 
-    public function InserirCompra(Request $request)
+    public function InserirCompra(Request $request, $id)
     {
-        $cliente=clientes::where('cpf',$request->cpf)->get();
-        /* return $cliente;
-        exit(); */
-        if(count($cliente)==0)
-        {
-            $situacao="CPF não cadastrado!";
-            return view('telaInserirCompra', compact('situacao'));
-        }
-        else
-        {
-            $compra=new compras;
-            $compra->valor=$request->valor;
-            $compra->id_cliente=$cliente[0]->id_cliente;
-            //return $compra;
-            $compra->save();
-            $situacao="Compra inserida com sucesso!";
-            return view('telaInserirCompra', compact('situacao'));
-            
-        }
         
-        
+        $clientes=clientes::get();
+        $compra=new compras;
+        $compra->valor=$request->valor;
+        $compra->id_cliente=$id;
+        $compra->save();
+        $situacao="Compra inserida com sucesso!";
+
+        return view('home', compact('situacao', 'clientes'));   
         
     }
 

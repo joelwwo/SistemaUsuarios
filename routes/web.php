@@ -7,7 +7,7 @@ Route::get('inserirCompra', 'ClientesController@telaInserirCompra');
 
 Route::get('home', 'ClientesController@home');
 
-Route::post('inserirCompra', 'ClientesController@InserirCompra');
+Route::post('inserirCompra/{id}', 'ClientesController@InserirCompra');
 
 Route::get('eliminarCliente/{id}', 'ClientesController@destroy');
 
