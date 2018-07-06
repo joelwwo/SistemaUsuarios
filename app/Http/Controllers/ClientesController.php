@@ -36,7 +36,7 @@ class ClientesController extends Controller
         $cliente=clientes::where('cpf',$request->cpf)->get();     
         if(count($cliente)==1)
         {   
-            return redirect('home')->with('erro','CPF já cadastrado!');
+            return redirect('home')->with('erro','Já existe um cliente cadastrado com esse CPF!');
         }
         
         else
@@ -76,7 +76,7 @@ class ClientesController extends Controller
        
         if($existe==1)
         {   
-            return redirect('home')->with('cpf','CPF já cadastrado!');
+            return redirect('home')->with('cpf','Já existe um cliente cadastrado com esse CPF!');
         }
         else
         {   
@@ -87,7 +87,7 @@ class ClientesController extends Controller
             $client->save();
             $clientes=clientes::get();
         
-            return redirect('home')->with('editar','Usuário(a) editado(a) com sucesso!');
+            return redirect('home')->with('editar','Cliente editado com sucesso!');
         }
 
     }
@@ -97,7 +97,7 @@ class ClientesController extends Controller
     {
         clientes::destroy($id);
 
-        return redirect('home')->with('excluir','Usuário(a) excluído(a) com sucesso!');
+        return redirect('home')->with('excluir','Cliente excluído com sucesso!');
     }
 
     //Pesquisar po cliente
