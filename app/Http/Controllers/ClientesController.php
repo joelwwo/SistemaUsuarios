@@ -54,7 +54,6 @@ class ClientesController extends Controller
 
     public function InserirCompra(Request $request, $id)
     {
-        
         $compra=new compras;
         $compra->valor=$request->valor;
         $compra->id_cliente=$id;
@@ -67,27 +66,35 @@ class ClientesController extends Controller
     //Editar cliente no banco de dados
     public function update(Request $request, $id)
     {
-        $existe=clientes::where('cpf',$request->cpf)->count();
-        $cliente=clientes::find($id);
-        $idCliente=$cliente->id_cliente;
 
-        /* print($request->cpf);
-        exit(); */
-       
-        if($existe==1)
-        {   
-            return redirect('home')->with('cpf','Já existe um cliente cadastrado com esse CPF!');
+        $cliente=clientes::find($id);
+        
+        if($cliente->cpf==$request->cpf)
+        {
+            $cliente->nome=$request->nome;
+            $cliente->cpf=$request->cpf;
+            $cliente->save();
+
+            return redirect('home')->with('editar','Cliente editado com sucesso!');
         }
         else
-        {   
-            $client=clientes::find($id);
-            $client->nome=$request->nome;
-            $client->cpf=$request->cpf;
-           
-            $client->save();
-            $clientes=clientes::get();
-        
-            return redirect('home')->with('editar','Cliente editado com sucesso!');
+        {
+            $existe=clientes::where('cpf',$request->cpf)->count();
+            if($existe==1)
+            {   
+                return redirect('home')->with('cpf','Já existe um cliente cadastrado com esse CPF!');
+            }
+            else
+            {   
+
+
+                $cliente->nome=$request->nome;
+                $cliente->cpf=$request->cpf;
+                $cliente->save();
+
+                return redirect('home')->with('editar','Cliente editado com sucesso!');
+            }
+
         }
 
     }

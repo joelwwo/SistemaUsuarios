@@ -18,9 +18,15 @@
     @endif
 
     @if (session('compra'))
-        <div class="alert alert-success">
-            {{ session('compra') }}
-        </div>
+        <p class="alert alert-success alert-dismissible text-center">
+                {{ session('compra') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </p>
+
     @endif
 
     @if (session('excluir'))
@@ -49,7 +55,7 @@
             <th class="text-center">Pontos</th>
             <th class="text-center">Inserir compra</th>
             <th class="text-center"><i class="fas fa-user-edit"></th>
-            <th class="text-center"><i class="fas fa-trash-alt"></th>
+            <th class="text-center"><i class="fas fa-trash-alt" style="color:red"></th>
         </tr>
     </thead>
     <tbody>     
