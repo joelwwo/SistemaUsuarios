@@ -21,6 +21,8 @@ Route::get('telaEditarCliente/{id}', 'ClientesController@edit');
 
 Route::post('editarCliente/{id}', 'ClientesController@update');
 
+Route::get('teste', 'ClientesController@teste');
+
 
 
 //log: 70 11:57

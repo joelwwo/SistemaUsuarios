@@ -20,6 +20,10 @@
                             <label for="recipient-name" class="col-form-label">CPF:</label>
                             <input autocomplete="off" type="text" class="form-control" name="cpf" id="cpf" required >
                         </div>
+                        <div class="form-group col-md-12">
+                            <label for="recipient-name" class="col-form-label">Valor da compra:</label>
+                            <input autocomplete="off" type="text" name="valor" id="valor" class="form-control" placeholder="R$" >
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             <button type="submit" role="submit" class="btn btn-primary">Cadastrar</button>

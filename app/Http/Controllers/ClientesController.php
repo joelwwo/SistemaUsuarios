@@ -7,21 +7,41 @@ use App\compras;
 use App\usuarios;
 use Illuminate\Http\Request;
 
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 class ClientesController extends Controller
 {
 
    //Exibi tela de login --OK
     public function index()
     {
-        $clientes=clientes::get();
+       
+        $clientes = DB::table('compras')
+        ->select('clientes.id_cliente', 'nome', 'cpf', DB::raw('SUM(valor) as total_compras'))
+        ->join('clientes', 'compras.id_cliente', '=', 'clientes.id_cliente')
+        ->groupBy('clientes.id_cliente')
+        ->orderBy('nome', 'asc')
+        ->get();
+        
         return view('home',compact('clientes'));
+        
     }
 
     //Exibir a tela inicial depois do login --OK
     public function home()
-    {   $clientes=clientes::get();
-        $compras=compras::get();
-        return view('home',compact('clientes','compras'));
+    {   
+       
+        $clientes = DB::table('compras')
+        ->select('clientes.id_cliente', 'nome', 'cpf', DB::raw('SUM(valor) as total_compras'))
+        ->join('clientes', 'compras.id_cliente', '=', 'clientes.id_cliente')
+        ->groupBy('clientes.id_cliente')
+        ->orderBy('nome', 'asc')
+        ->get();
+
+        return view('home',compact('clientes'));
+
     }
 
     //Exibi tela de inserir compra --OK
@@ -46,7 +66,27 @@ class ClientesController extends Controller
             $cliente1->cpf=$request->cpf;
             $cliente1->save();
 
-            return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
+            if ($request->valor=="")
+            {
+                $cliente2=clientes::where('cpf',$request->cpf)->get();
+                $compra=new compras;
+                $compra->valor=0;
+                $compra->id_cliente=$cliente2[0]->id_cliente;
+                $compra->save();
+
+                return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
+            }
+            else
+            {
+                $cliente2=clientes::where('cpf',$request->cpf)->get();
+                $compra=new compras;
+                $compra->valor=$request->valor;
+                $compra->id_cliente=$cliente2[0]->id_cliente;
+                $compra->save();
+
+                return redirect('home')->with('sucesso','Cliente e compra inseridos com sucesso!');
+            }
+            
         }
         
         
@@ -130,5 +170,25 @@ class ClientesController extends Controller
         }
    
         return view('telaPesquisar', compact('valor','nome','pontos'));
+    }
+
+    public function teste (){
+
+        /* $total_compras= clientes::get(); */
+           /*  $users = DB::table('clientes')
+            ->join('compras', 'clientes.id_cliente', '=', 'compras.id_cliente')
+            ->select('clientes.*', 'compras.valor')->sum('valor'); */
+            /* ->get(); */
+            
+            $clientes = DB::table('compras')
+            ->select('clientes.id_cliente', 'nome', 'cpf', DB::raw('SUM(valor) as total_compras'))
+            ->join('clientes', 'compras.id_cliente', '=', 'clientes.id_cliente')
+            ->groupBy('clientes.id_cliente')
+            ->orderBy('nome', 'asc')
+            ->get();
+           
+            return $clientes;
+            
+            
     }
 }

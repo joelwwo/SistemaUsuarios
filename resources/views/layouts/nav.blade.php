@@ -37,6 +37,11 @@
                 </div>
               </form>
             </li>
+
+            <li class="nav-item" style="padding: 0px 5px ">
+              <a href="/teste" class="active nav-link">Consulta</a>
+            </li>
+
           </ul>
         </div>
       </div>
