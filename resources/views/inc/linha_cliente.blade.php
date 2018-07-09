@@ -8,7 +8,7 @@
             @csrf
                 <div class="form-group col-md-8 offset-md-2">
                     <div class="input-group">
-                        <input autocomplete="off" type="number" name="valor" id="valor" class="form-control" placeholder="R$" required>
+                        <input autocomplete="off" type="text" name="valor" id="valor" class="form-control" placeholder="R$" onKeyPress="return(MascaraMoeda(this,'.',',',event))" required>
                         <div class="input-group-append">
                             <button class="btn btn-primary" role="submit" type="submit">Salvar</button>
                         </div>
