@@ -173,7 +173,7 @@ class ClientesController extends Controller
     }
 
     public function teste (){
-
+        /* return DB::table('clientes')->delete(); */
         /* $total_compras= clientes::get(); */
            /*  $users = DB::table('clientes')
             ->join('compras', 'clientes.id_cliente', '=', 'compras.id_cliente')
@@ -188,6 +188,8 @@ class ClientesController extends Controller
             ->get();
            
             return $clientes;
+           
+
             
             
     }

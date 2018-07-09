@@ -37,8 +37,8 @@
       <script src={{asset("js/jquery.mask.min.js")}}></script>
       <script type="text/javascript">
       $(document).ready(function(){
-        $('#cpf').mask('000.000.000-00', {reverse: true});
-        $('#valor').mask("#.##0.00", {reverse: true});
+        $('.cpf').mask('000.000.000-00', {reverse: true});
+        $('.valor').mask("#.##0.00", {reverse: true});
       });
       </script>
 

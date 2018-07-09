@@ -7,12 +7,12 @@
         <h1 class="text-center">Clientes cadastrados</h1>
 
     @if (session('sucesso'))
-        <div class="alert alert-success">
+        <div class="alert alert-success text-center">
             {{ session('sucesso') }}
         </div>
     @endif
     @if (session('erro'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger text-center">
             {{ session('erro') }}
         </div>
     @endif
@@ -30,19 +30,19 @@
     @endif
 
     @if (session('excluir'))
-        <div class="alert alert-success">
+        <div class="alert alert-success text-center">
             {{ session('excluir') }}
         </div>
     @endif
 
     @if (session('cpf'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger text-center">
             {{ session('cpf') }}
         </div>
     @endif
 
     @if (session('editar'))
-        <div class="alert alert-success">
+        <div class="alert alert-success text-center">
             {{ session('editar') }}
         </div>
     @endif
@@ -58,7 +58,8 @@
             <th class="text-center"><i class="fas fa-trash-alt" style="color:red"></th>
         </tr>
     </thead>
-    <tbody>     
+    <tbody>    
+        
                 @foreach ($clientes as $cliente)
                     @include('inc.linha_cliente')
                 @endforeach

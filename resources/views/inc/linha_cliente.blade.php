@@ -8,7 +8,7 @@
             @csrf
                 <div class="form-group col-md-8 offset-md-2">
                     <div class="input-group">
-                        <input autocomplete="off" type="text" name="valor" id="valor" class="form-control" placeholder="R$" onKeyPress="return(MascaraMoeda(this,'.',',',event))" required>
+                        <input autocomplete="off" type="text" name="valor" id="valor" class="form-control valor" placeholder="R$" {{-- onKeyPress="return(MascaraMoeda(this,'.',',',event))" --}} required>
                         <div class="input-group-append">
                             <button class="btn btn-primary" role="submit" type="submit">Salvar</button>
                         </div>
@@ -21,11 +21,12 @@
             </div>
             </form>
         </th>     
-    <th>
+    <th class="text-left">
         <!-- <a href="#" class="btn btn-outline-primary">Editar cliente</a> -->
         @include('inc.editar_cliente')
     </th>
     <th>
-        <a href="eliminarCliente/{{ $cliente->id_cliente }}" class="btn btn-outline-danger">Excluir cliente</a>
+        {{-- <a href="eliminarCliente/{{ $cliente->id_cliente }}" class="btn btn-outline-danger">Excluir cliente </a> --}}
+        @include('inc.excluir_cliente')
     </th>
 </tr>
