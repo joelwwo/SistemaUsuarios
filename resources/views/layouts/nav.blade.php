@@ -28,7 +28,7 @@
             <li class="nav-item" style="padding: 0px 5px ">
                 @include('inc.cadastrar_cliente')
             </li>
-            <li class="nav-item">
+            <li class="nav-item col-md-4">
               <form name="pesquisa">
                 <div class="row">
                     <div class="col">
