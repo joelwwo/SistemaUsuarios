@@ -20,7 +20,7 @@
     <body onload="javascript:pesquisa.texto.focus()" >
         <div class="container">
             <!--  Cabeçalho e navegação  -->
-            @include('layouts.nav')
+            @include('layouts.nav2')
 
             <!--  Conteúdo  -->
             @yield('conteudo')

@@ -180,17 +180,31 @@ class ClientesController extends Controller
             ->select('clientes.*', 'compras.valor')->sum('valor'); */
             /* ->get(); */
             
-            $clientes = DB::table('compras')
+            $cliente = DB::table('compras')
             ->select('clientes.id_cliente', 'nome', 'cpf', DB::raw('SUM(valor) as total_compras'))
             ->join('clientes', 'compras.id_cliente', '=', 'clientes.id_cliente')
             ->groupBy('clientes.id_cliente')
             ->orderBy('nome', 'asc')
             ->get();
            
-            return $clientes;
-           
-
-            
-            
+            return $cliente;   
     }
+
+    public function relatorio(){
+        return view('relatorio');
+    }
+
+    public function pesq()
+    {
+        $cpf="049.670.481-88";
+        return $cpf;
+        return view('relatorio',compact('cpf'));
+
+        /* $cliente=clientes::where('cpf',$cpf)->get();
+            
+        return view('relatorio',compact('cpf')); */
+            
+        
+    }
+
 }

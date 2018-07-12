@@ -23,6 +23,10 @@ Route::post('editarCliente/{id}', 'ClientesController@update');
 
 Route::get('teste', 'ClientesController@teste');
 
+Route::get ('relatorio','ClientesController@relatorio');
+
+Route:: get ('pesquisa','ClientesController@pesq');
+
 
 
 //log: 70 11:57
