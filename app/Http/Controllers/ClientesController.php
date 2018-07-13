@@ -147,7 +147,7 @@ class ClientesController extends Controller
         return redirect('home')->with('excluir','Cliente excluído com sucesso!');
     }
 
-    //Pesquisar po cliente
+    //Pesquisar por cliente
 
     public function pesquisar(Request $request){
         $cpf=$request->cpf;
@@ -194,15 +194,29 @@ class ClientesController extends Controller
         return view('relatorio');
     }
 
-    public function pesq()
+    public function pesq(Request $request)
     {
-        $cpf="049.670.481-88";
-        return $cpf;
-        return view('relatorio',compact('cpf'));
+        
+        $nome=$request->nome;
 
-        /* $cliente=clientes::where('cpf',$cpf)->get();
+        $clientes=clientes::where('nome','like', "%$nome%")->get();
             
-        return view('relatorio',compact('cpf')); */
+        if(count($cliente)==1)
+        {
+            $compras=compras::where('id_cliente',$cliente[0]->id_cliente)->get();
+            return view('relatorio',compact('compras'));
+        }
+
+        
+        
+    }
+
+    public function compras($id)
+    {
+        
+        $compras=compras::where('id_cliente',$id)->get();
+            
+        return view('relatorio',compact('compras'));
             
         
     }

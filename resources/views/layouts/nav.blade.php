@@ -19,34 +19,29 @@
 
 <br>
 <br>
-  <div class="row">
+  <div class="row col-md-12">
     
       
-        <div class="col-md-1">
+        <div class="col-md-1" >
           <a href="/home" class="btn btn-primary" >Clientes</a>
         </div>
-        <div>
-            <a href="/teste" class="active nav-link">Consulta</a>
-        </div>
-        <div class="col-md-5">
-          <form name="jo">
-                    <form class="form-inline pi-draggable" method="GET" action="/teste">
-                        @csrf
-                            <div >
-                                <div class="input-group">
-                                    <input autocomplete="off" type="text" name="cpf" id="cpf" class="form-control" placeholder="Pesquisar por nome" onkeyup="maiuscula(this)" autofocus >
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" role="submit" type="submit">Buscar</button>
-                                    </div>
-                                </div>  
+        <div class="col-md-11">
+            <form class="form-inline pi-draggable" method="GET" action="/pesquisa">
+                @csrf
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <input autocomplete="off" type="text" name="nome" id="nome" class="form-control" placeholder="Pesquisar por nome" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" role="submit" type="submit">Buscar</button>
                             </div>
-                        </form>
-                        <form class="form-inline" method="GET" action="/teste">
-                            <div class="input-group">
-                                <div class="input-group-append"> </div>
-                            </div>
-                        </form>
-          </form>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-append"> </div>
+                </div>
+                </form>
         </div>
 
         <!-- <li class="nav-item" style="padding: 0px 5px ">

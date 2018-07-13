@@ -25,7 +25,9 @@ Route::get('teste', 'ClientesController@teste');
 
 Route::get ('relatorio','ClientesController@relatorio');
 
-Route:: get ('pesquisa','ClientesController@pesq');
+Route::get ('pesquisa','ClientesController@pesq');
+
+Route::get ('compras/{id}','ClientesController@compras');
 
 
 
