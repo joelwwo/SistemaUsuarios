@@ -30,7 +30,7 @@
                 @csrf
                     <div class="form-group col-md-12">
                         <div class="input-group">
-                            <input autocomplete="off" type="text" name="nome" id="nome" class="form-control" placeholder="Pesquisar por nome" required>
+                            <input autocomplete="off" type="text" name="nome" id="nome" class="form-control" placeholder="Pesquisar por nome" onkeyup="maiuscula(this)" autofocus required>
                             <div class="input-group-append">
                                 <button class="btn btn-primary" role="submit" type="submit">Buscar</button>
                             </div>
