@@ -95,10 +95,13 @@ class ClientesController extends Controller
     public function InserirCompra(Request $request, $id)
     {
         $compra=new compras;
-        $compra->valor=$request->valor;
-        $compra->id_cliente=$id;
-        $compra->save();
         
+        $valor=$request->valor;
+        /* $v=$valor=(double) */
+        $compra->valor=$valor;
+        $compra->id_cliente=$id;
+        /* return $v; */
+        $compra->save();
         return redirect('home')->with('compra','Compra inserida com sucesso!');  
         
     }

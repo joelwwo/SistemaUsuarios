@@ -22,7 +22,7 @@
                 <table class="table table-striped" id="compras">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="text-center">Valor</th>
+                            <th class="text-center">Valor da compra</th>
                             <th class="text-center">Data da compra</th>
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                     <table class="table table-striped" id="compras">
                         <thead class="thead-dark">
                             <tr>
-                                <th class="text-center">Valor</th>
+                                <th class="text-center">Valor da compra</th>
                                 <th class="text-center">Data da compra</th>
                             </tr>
                         </thead>
