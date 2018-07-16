@@ -1,6 +1,6 @@
 
 <tr class="text-center">
-    <td>{{$cliente->nome}}</td>
+    <td><a href="compras/{{$cliente->id_cliente}}">{{$cliente->nome}}</a></td>
     <td>{{$cliente->cpf}}</td>
     <td>{{$cliente->total_compras*2}}</td>
         <th>

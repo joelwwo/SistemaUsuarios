@@ -203,12 +203,22 @@ class ClientesController extends Controller
         $nome=$request->nome;
 
         $clientes=clientes::where('nome','like', "%$nome%")->get();
-        return view('relatorio',compact('clientes')); 
-        if(count($cliente)==1)
+        if(count($clientes)==1 || count($clientes)>1)
+        {
+            $cliente=clientes::where('id_cliente',$clientes[0]->id_cliente)->get();
+            $compras=compras::where('id_cliente',$clientes[0]->id_cliente)->get();
+            $valor_compras=compras::where('id_cliente',$clientes[0]->id_cliente)->sum('valor');
+            return view('relatorio',compact('compras','cliente','valor_compras'));
+        } 
+
+        /* return view('relatorio',compact('clientes')); 
+ */
+
+       /*  if(count($cliente)==1)
         {
             $compras=compras::where('id_cliente',$cliente[0]->id_cliente)->get();
             return view('relatorio',compact('compras'));
-        }
+        } */
 
         
         
@@ -218,8 +228,12 @@ class ClientesController extends Controller
     {
         
         $compras=compras::where('id_cliente',$id)->get();
+
+        $cliente=clientes::where('id_cliente',$id)->get();
+        $valor_compras=compras::where('id_cliente',$id)->sum('valor');
+        return view('relatorio',compact('compras','cliente','valor_compras'));
             
-        return view('relatorio',compact('compras'));
+        /* return view('relatorio',compact('compras')); */
             
         
     }

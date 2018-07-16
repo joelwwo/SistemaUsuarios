@@ -1,12 +1,10 @@
 
 <tr class="text-center">
-    @php
-        setlocale(LC_MONETARY, 'pt_BR');
-    @endphp
-    <td>{{-- {{$compra->valor}} --}}@php
-        setlocale(LC_MONETARY, 'pt_BR');
-        echo money_format('%i', $compra->valor);
-    @endphp</td>
+    <td>
+        @php
+            echo 'R$ ' . number_format($compra->valor, 2, ',', '.');
+        @endphp
+    </td>
     <td> {{$compra->created_at->format('d/m/Y')}}</td>
 </tr>
 
