@@ -66,7 +66,7 @@ class ClientesController extends Controller
             $cliente1->cpf=$request->cpf;
             $cliente1->save();
 
-            return strlen($request->cpf);
+            /* return strlen($request->cpf); */
 
             if ($request->valor=="")
             {
