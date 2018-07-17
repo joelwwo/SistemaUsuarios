@@ -66,6 +66,8 @@ class ClientesController extends Controller
             $cliente1->cpf=$request->cpf;
             $cliente1->save();
 
+            return strlen($request->cpf);
+
             if ($request->valor=="")
             {
                 $cliente2=clientes::where('cpf',$request->cpf)->get();
@@ -78,6 +80,7 @@ class ClientesController extends Controller
             }
             else
             {
+
                 $cliente2=clientes::where('cpf',$request->cpf)->get();
                 $compra=new compras;
                 $compra->valor=$request->valor;
@@ -169,7 +172,6 @@ class ClientesController extends Controller
             $valor1=compras::where('id_cliente',$idCliente)->sum('valor');
             $valor=(double) $valor1;
             $pontos=$valor*2;
-            //return $valor;
         }
    
         return view('telaPesquisar', compact('valor','nome','pontos'));
@@ -201,40 +203,65 @@ class ClientesController extends Controller
     {
         
         $nome=$request->nome;
-
+        $situacaoCompra="";
+        $situacaoCliente="";
         $clientes=clientes::where('nome','like', "%$nome%")->get();
-        if(count($clientes)==1 || count($clientes)>1)
+        if(count($clientes)==1)
         {
+            $situacaoCliente="um";
             $cliente=clientes::where('id_cliente',$clientes[0]->id_cliente)->get();
             $compras=compras::where('id_cliente',$clientes[0]->id_cliente)->get();
             $valor_compras=compras::where('id_cliente',$clientes[0]->id_cliente)->sum('valor');
-            return view('relatorio',compact('compras','cliente','valor_compras'));
-        } 
-
-        /* return view('relatorio',compact('clientes')); 
- */
-
-       /*  if(count($cliente)==1)
+            if(count($compras)==1 and $compras[0]->valor==0)
+            {
+                $situacaoCompra="sem compras";
+                return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
+            }
+            else
+            {
+                $situacaoCompra="muitas compras";
+                return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
+            }
+            
+            
+        }
+        if(count($clientes)==0)
         {
-            $compras=compras::where('id_cliente',$cliente[0]->id_cliente)->get();
-            return view('relatorio',compact('compras'));
-        } */
-
+            $situacaoCliente="sem cliente";
+            return view('relatorio',compact('situacaoCliente'));
+        }
+        if(count($clientes)>1)
+        {
         
+            $situacaoCliente="muitos clientes";
+            return view('relatorio',compact('clientes','situacaoCliente'));
+            
+        }
         
     }
 
     public function compras($id)
     {
-        
+        $situacaoCompra="";
+        $situacaoCliente="um";
         $compras=compras::where('id_cliente',$id)->get();
-
         $cliente=clientes::where('id_cliente',$id)->get();
         $valor_compras=compras::where('id_cliente',$id)->sum('valor');
-        return view('relatorio',compact('compras','cliente','valor_compras'));
-            
-        /* return view('relatorio',compact('compras')); */
-            
+        if(count($compras)==1 and $compras[0]->valor==0)
+        {
+            $situacaoCompra="sem compras";
+            return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
+        }
+        if(count($compras)==1 and $compras[0]->valor>0)
+        {
+            $situacaoCompra="muitas compras";
+            return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
+        }
+        else
+        {
+            $situacaoCompra="muitas compras";
+            return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
+        }
         
     }
 
