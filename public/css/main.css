@@ -8,6 +8,11 @@
     margin-top: 20px;
 }
 
+#fixar{
+  position: fixed;
+  display: block;
+}
+
 /*!
 * Based on Bootstrap v4.0.0 (https://getbootstrap.com) 
 */

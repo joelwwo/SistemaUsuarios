@@ -31,5 +31,6 @@ Route::get ('compras/{id}','ClientesController@compras');
 
 
 
+
 //log: 70 11:57
 

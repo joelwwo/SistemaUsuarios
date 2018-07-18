@@ -53,38 +53,91 @@ class ClientesController extends Controller
     //Cadastra cliente --OK
     public function store(Request $request)
     {
-        $cliente=clientes::where('cpf',$request->cpf)->get();     
-        if(count($cliente)==1)
-        {   
-            return redirect('home')->with('erro','Já existe um cliente cadastrado com esse CPF!');
-        }
-        
+        $cliente=clientes::where('cpf',$request->cpf)->get();
+        if($request->cpf=="")
+        {
+            
+            $n1 = rand (1,10);
+            $n2 = rand (1,100);
+            $cpf="Não cadastrado-$n1-$n2";
+            $cliente1=clientes::where('cpf',$cpf)->get();
+            if (count($cliente1)==1)
+            {   
+                return redirect('home')->with('erro','Já existe um cliente cadastrado com esse CPF!');
+            }
+            else
+            {
+                $cliente2=new clientes;
+                $cliente2->nome=$request->nome;
+                $cliente2->cpf=$cpf;
+                $cliente2->save();
+                
+                /* return strlen($request->cpf); */
+                if (count($cliente)==1)
+                {   
+                    return redirect('home')->with('erro','Já existe um cliente cadastrado com esse CPF!');
+                }
+                if ($request->valor=="")
+                {
+                    
+                    $compra=new compras;
+                    $compra->valor=0;
+                    $compra->id_cliente=$cliente2->id_cliente;
+                    $compra->save();
+
+                    return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
+                }
+                else
+                {
+                    $compra=new compras;
+                    $compra->valor=$request->valor;
+                    $compra->id_cliente=$cliente2->id_cliente;
+                    $compra->save();
+
+                    return redirect('home')->with('sucesso','Cliente e compra inseridos com sucesso!');
+                }
+                
+            }
+            
+        }     
         else
         {
-            $cliente1=new clientes;
-            $cliente1->nome=$request->nome;
-            $cliente1->cpf=$request->cpf;
-            $cliente1->save();
-
             /* return strlen($request->cpf); */
+            
+            if (count($cliente)==1)
+            {   
+                return redirect('home')->with('erro','Já existe um cliente cadastrado com esse CPF!');
+            }
 
-            if ($request->valor=="")
+            elseif(strlen($request->cpf)!= 14)
             {
-                $cliente2=clientes::where('cpf',$request->cpf)->get();
+                return redirect('home')->with('cpfInvalido','CPF com tamanho incorreto!!');
+            }
+            
+            elseif ($request->valor=="")
+            {
+                $cliente2=new clientes;
+                $cliente2->nome=$request->nome;
+                $cliente2->cpf=$request->cpf;
+                $cliente2->save();
+
                 $compra=new compras;
                 $compra->valor=0;
-                $compra->id_cliente=$cliente2[0]->id_cliente;
+                $compra->id_cliente=$cliente2->id_cliente;
                 $compra->save();
 
                 return redirect('home')->with('sucesso','Cliente cadastrado com sucesso!');
             }
             else
             {
+                $cliente2=new clientes;
+                $cliente2->nome=$request->nome;
+                $cliente2->cpf=$request->cpf;
+                $cliente2->save();
 
-                $cliente2=clientes::where('cpf',$request->cpf)->get();
                 $compra=new compras;
                 $compra->valor=$request->valor;
-                $compra->id_cliente=$cliente2[0]->id_cliente;
+                $compra->id_cliente=$cliente2->id_cliente;
                 $compra->save();
 
                 return redirect('home')->with('sucesso','Cliente e compra inseridos com sucesso!');
@@ -92,8 +145,9 @@ class ClientesController extends Controller
             
         }
         
+    }     
         
-    }
+
 
     public function InserirCompra(Request $request, $id)
     {
@@ -114,7 +168,7 @@ class ClientesController extends Controller
     {
 
         $cliente=clientes::find($id);
-        
+        $existe=clientes::where('cpf',$request->cpf)->count();
         if($cliente->cpf==$request->cpf)
         {
             $cliente->nome=$request->nome;
@@ -125,8 +179,11 @@ class ClientesController extends Controller
         }
         else
         {
-            $existe=clientes::where('cpf',$request->cpf)->count();
-            if($existe==1)
+            if(strlen($request->cpf)!= 14)
+            {
+                return redirect('home')->with('cpfInvalido','CPF com tamanho incorreto!!');
+            }
+            elseif($existe==1)
             {   
                 return redirect('home')->with('cpf','Já existe um cliente cadastrado com esse CPF!');
             }
@@ -185,14 +242,18 @@ class ClientesController extends Controller
             ->select('clientes.*', 'compras.valor')->sum('valor'); */
             /* ->get(); */
             
-            $cliente = DB::table('compras')
+            /* $cliente = DB::table('compras')
             ->select('clientes.id_cliente', 'nome', 'cpf', DB::raw('SUM(valor) as total_compras'))
             ->join('clientes', 'compras.id_cliente', '=', 'clientes.id_cliente')
             ->groupBy('clientes.id_cliente')
             ->orderBy('nome', 'asc')
-            ->get();
-           
-            return $cliente;   
+            ->get(); */
+           $n1 = rand (100,1000);
+           $n2 = rand (100,1000);
+           $n3 = rand (100,1000);
+           $n4 = rand (10,99);
+           $cpf="$n1.$n2.$n3-$n4";
+           return $cpf;   
     }
 
     public function relatorio(){

@@ -46,6 +46,11 @@
             {{ session('editar') }}
         </div>
     @endif
+    @if (session('cpfInvalido'))
+        <div class="alert alert-danger text-center">
+            {{ session('cpfInvalido') }}
+        </div>
+    @endif
 
 <table class="table table-striped" id="tabela">
     <thead class="thead-dark">

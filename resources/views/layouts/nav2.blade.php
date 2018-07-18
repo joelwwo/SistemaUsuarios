@@ -11,7 +11,7 @@
 
 <div class="row">
         <div class="col-md-12 bg-primary">
-            <h3>Drogaria Vida</h3>
+            <h1>Drogaria Vida</h1>
         </div>
 </div>
     
@@ -35,15 +35,15 @@
               <form name="pesquisa">
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" id="txt_consulta" placeholder="Filtrar por nome ou CPF..." name="texto" onkeyup="maiuscula(this)" >
+                        <input  autocomplete="off" type="text" class="form-control" id="txt_consulta" placeholder="Filtrar por nome ou CPF..." name="texto" onkeyup="maiuscula(this)" >
                     </div>
                 </div>
               </form>
             </li>
 
-            <!-- <li class="nav-item" style="padding: 0px 5px ">
-              <a href="/teste" class="active nav-link">Consulta</a>
-            </li> -->
+            <li class="nav-item" style="padding: 0px 5px ">
+              <a href="/teste" class="active nav-link">Gerar número</a>
+            </li>
 
           </ul>
         </div>

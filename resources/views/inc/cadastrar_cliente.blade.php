@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="recipient-name" class="col-form-label">CPF:</label>
-                        <input autocomplete="off" type="text" class="form-control cpf" name="cpf" id="cpf" required > 
+                        <input autocomplete="off" type="text" class="form-control cpf" name="cpf" id="cpf" > 
                     </div>
                     <div class="col-md-4">
                         <label for="recipient-name" class="col-form-label">Valor da compra:</label>
