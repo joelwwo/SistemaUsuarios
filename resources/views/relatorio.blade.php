@@ -18,7 +18,7 @@
             
         @if ((isset($situacaoCliente) && isset($situacaoCompra)) && ($situacaoCliente=="um" && $situacaoCompra=="sem compras"))              
         
-        <p class="alert alert-danger alert-dismissible text-center">
+        <p class="alert alert-warning alert-dismissible text-center">
                 {{"Nenhuma compra cadastrada!"}}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">
