@@ -1,7 +1,19 @@
 
 <tr class="text-center">
     <td><a href="compras/{{$cliente->id_cliente}}">{{$cliente->nome}}</a></td>
-    <td>{{$cliente->cpf}}</td>
+    @php
+        $cpf=$cliente->cpf;
+        $n=substr_compare($cpf,"Sem",0,2);
+        if($n==0)
+        {
+            echo "<td style='color:red'>".$cpf."</td>";
+        }
+        else {
+            {
+                echo "<td>".$cpf."</td>";
+            }
+        }
+    @endphp
     <td>{{$cliente->total_compras*2}}</td>
         <th>
             <form class="form-inline pi-draggable" method="POST" action="/inserirCompra/{{ $cliente->id_cliente }}">

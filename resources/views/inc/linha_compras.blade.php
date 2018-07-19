@@ -1,11 +1,18 @@
 
 <tr class="text-center">
-    <td>
         @php
-            echo 'R$ ' . number_format($compra->valor, 2, ',', '.');
+            if($compra->valor != 0)
+            {
+                    echo "<td>";
+                    echo 'R$ ' . number_format($compra->valor, 2, ',', '.');
+                    echo "</td>";
+                    
+                    echo "<td>";
+                    echo $compra->created_at->format('d/m/Y');
+                    echo "</td>";
+            }
+            
         @endphp
-    </td>
-    <td> {{$compra->created_at->format('d/m/Y')}}</td>
 </tr>
 
 <?php

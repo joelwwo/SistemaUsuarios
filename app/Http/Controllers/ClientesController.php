@@ -59,7 +59,7 @@ class ClientesController extends Controller
             
             $n1 = rand (1,10);
             $n2 = rand (1,100);
-            $cpf="Não cadastrado-$n1-$n2";
+            $cpf="Sem CPF-$n1-$n2";
             $cliente1=clientes::where('cpf',$cpf)->get();
             if (count($cliente1)==1)
             {   
@@ -151,16 +151,21 @@ class ClientesController extends Controller
 
     public function InserirCompra(Request $request, $id)
     {
-        $compra=new compras;
+        if($request->valor<1)
+        {
+            return redirect('home')->with('compra_erro','O valor da compra deve ser maior que zero!');
+        }
+        else
+        {
+            $compra=new compras;
         
-        $valor=$request->valor;
-        /* $v=$valor=(double) */
-        $compra->valor=$valor;
-        $compra->id_cliente=$id;
-        /* return $v; */
-        $compra->save();
-        return redirect('home')->with('compra','Compra inserida com sucesso!');  
-        
+            $valor=$request->valor;
+            $compra->valor=$valor;
+            $compra->id_cliente=$id;
+            $compra->save();
+            return redirect('home')->with('compra','Compra inserida com sucesso!');
+        }
+          
     }
 
     //Editar cliente no banco de dados
@@ -313,7 +318,7 @@ class ClientesController extends Controller
             $situacaoCompra="sem compras";
             return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));
         }
-        if(count($compras)==1 and $compras[0]->valor>0)
+        elseif(count($compras)==1 and $compras[0]->valor>0)
         {
             $situacaoCompra="muitas compras";
             return view('relatorio',compact('compras','cliente','valor_compras','situacaoCompra','situacaoCliente'));

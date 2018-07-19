@@ -29,6 +29,18 @@
 
     @endif
 
+    @if (session('compra_erro'))
+        <p class="alert alert-danger alert-dismissible text-center">
+                {{ session('compra_erro') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </p>
+
+    @endif
+
     @if (session('excluir'))
         <div class="alert alert-success text-center">
             {{ session('excluir') }}
