@@ -41,9 +41,9 @@
               </form>
             </li>
 
-            <li class="nav-item" style="padding: 0px 5px ">
+            {{-- <li class="nav-item" style="padding: 0px 5px ">
               <a href="/teste" class="active nav-link">Gerar número</a>
-            </li>
+            </li> --}}
 
           </ul>
         </div>

@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 class ClientesController extends Controller
 {
 
-   //Exibi tela de login --OK
+   // Redireciona para a tela Home --OK
     public function index()
     {
        
@@ -29,7 +29,7 @@ class ClientesController extends Controller
         
     }
 
-    //Exibir a tela inicial depois do login --OK
+    //Exibir a tela Home --OK
     public function home()
     {   
        
@@ -44,11 +44,6 @@ class ClientesController extends Controller
 
     }
 
-    //Exibi tela de inserir compra --OK
-    public function telaInserirCompra()
-    {   
-        return view('telaInserirCompra');
-    }
 
     //Cadastra cliente --OK
     public function store(Request $request)
@@ -215,30 +210,7 @@ class ClientesController extends Controller
         return redirect('home')->with('excluir','Cliente excluído com sucesso!');
     }
 
-    //Pesquisar por cliente
-
-    public function pesquisar(Request $request){
-        $cpf=$request->cpf;
-
-        $cliente=clientes::where('cpf',$cpf)->get();
-
-        if(count($cliente)==0)
-        {
-            $situacao="CPF não cadastrado!";
-            return view('telaPesquisar', compact('situacao'));
-        }
-        else
-        {
-            $idCliente=$cliente[0]->id_cliente;
-            $nome=$cliente[0]->nome;
-            $valor1=compras::where('id_cliente',$idCliente)->sum('valor');
-            $valor=(double) $valor1;
-            $pontos=$valor*2;
-        }
-   
-        return view('telaPesquisar', compact('valor','nome','pontos'));
-    }
-
+ 
     public function teste (){
         /* return DB::table('clientes')->delete(); */
         /* $total_compras= clientes::get(); */
@@ -306,7 +278,7 @@ class ClientesController extends Controller
         
     }
 
-    public function compras($id)
+    public function listarCompras($id)
     {
         $situacaoCompra="";
         $situacaoCliente="um";
