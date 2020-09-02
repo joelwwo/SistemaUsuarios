@@ -10,7 +10,7 @@
 </script>
 
 <div class="row">
-        <div class="col-md-12 bg-primary">
+        <div class="col-md-12 bg-primary text-center">
             <h1>Drogaria Vida</h1>
         </div>
 </div>

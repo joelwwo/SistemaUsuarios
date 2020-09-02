@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-12 bg-primary">
-        <h3>Drogaria Vida</h3>
+        <h3>Drogaria Vida!!</h3>
     </div>
 </div>
 
